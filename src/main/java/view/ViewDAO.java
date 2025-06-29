@@ -27,8 +27,9 @@ public class ViewDAO {
                 arr1.add(s);
                 arr1.add(n);
                 arr1.add(l);
-
-                arr.add(arr1);
+                if(!arr.contains(arr1)) {
+                    arr.add(arr1);
+                }
             }
             
         }catch(Exception e) {
