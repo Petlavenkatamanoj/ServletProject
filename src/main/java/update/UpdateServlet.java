@@ -1,5 +1,6 @@
 package update;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 
 
@@ -20,15 +21,39 @@ public class UpdateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        int k = up.update(req);  // UpdateDAO should now accept HttpServletRequest
+        String idStr = req.getParameter("id");
+        String salaryStr = req.getParameter("salary");
+
         res.setContentType("text/html");
-        try (PrintWriter out = res.getWriter()) {
-            if (k > 0) {
-                out.println("Element Updated Successfully");
-            } else {
-                out.println("Update unsuccessfully");
-            }
+
+
+        if (idStr == null || salaryStr == null || idStr.trim().isEmpty() || salaryStr.trim().isEmpty()) {
+            req.setAttribute("message", "ID and Salary fields are required.");
+            RequestDispatcher rd = req.getRequestDispatcher("updateview.jsp");
+            rd.forward(req, res);
+            return;
         }
+
+        try {
+            int id = Integer.parseInt(idStr);
+            int salary = Integer.parseInt(salaryStr);
+            req.setAttribute("id", id);
+            req.setAttribute("salary", salary);
+
+            int k = up.update(req); // assumes update() uses these attributes
+
+            if (k > 0) {
+                req.setAttribute("message", "Element Updated Successfully");
+            } else {
+                req.setAttribute("message", "Update Unsuccessful");
+            }
+        } catch (NumberFormatException e) {
+            req.setAttribute("message", "Please enter valid numeric values for ID and Salary.");
+        }
+
+        RequestDispatcher rd = req.getRequestDispatcher("updateview.jsp");
+        rd.forward(req, res);
     }
 
 }
+

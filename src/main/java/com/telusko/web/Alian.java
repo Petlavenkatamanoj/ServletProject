@@ -1,4 +1,5 @@
 package com.telusko.web;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,7 +20,15 @@ public class Alian extends HttpServlet {
        PrintWriter out=res.getWriter();
        res.setContentType("text/html");
        if(k>0){
-           out.println("add successfully");
+           req.setAttribute("message","Record add Successfully");
+       }else{
+           req.setAttribute("message","Record add Unsuccessfully");
+       }
+       try{
+           RequestDispatcher rd=req.getRequestDispatcher("response.jsp");
+           rd.forward(req,res);
+       }catch (Exception e){
+           e.printStackTrace();
        }
     }
     public void destroy(){

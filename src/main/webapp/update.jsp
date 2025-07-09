@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<html>
 <head>
  <style>
         * {
@@ -8,18 +7,17 @@
             box-sizing: border-box;
         }
 
-        body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-            background-image: url('image/background.jpg');
-             background-size: cover;
-             background-position: center;
-             background-repeat: no-repeat;
-             font-family: Arial, sans-serif;
-        }
+       .form-wrapper {
+           background-image: url('image/background.jpg');
+           background-size: cover;
+           background-position: center;
+           background-repeat: no-repeat;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           padding: 60px 0;
+           min-height: 90vh;
+       }
 
         form {
             width: 400px;
@@ -53,7 +51,7 @@
         }
     </style>
 </head>
-<body>
+<div class="form-wrapper">
 <form action="update" method="/get">
 <label>Enter a Id:</label>
 <input type="number" name="id">
@@ -65,5 +63,4 @@
 <input type="text" name="department">
 Enter a Submit:<input type="submit">
 </form>
-</body>
-</html>
+</div>

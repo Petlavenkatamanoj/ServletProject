@@ -1,6 +1,7 @@
 package view;
 
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,9 +26,9 @@ public class ViewServlet extends HttpServlet {
         res.setContentType("text/html");
         PrintWriter out = res.getWriter();
 
-        for(Object a:arr){
-            out.println(a.toString());
-        }
+        req.setAttribute("list", arr);
+        RequestDispatcher rd=req.getRequestDispatcher("viewer.jsp");
+        rd.forward(req,res);
 
     }
 }

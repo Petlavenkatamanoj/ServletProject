@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<html>
 <head>
     <style>
         * {
@@ -8,18 +7,17 @@
             box-sizing: border-box;
         }
 
-        body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: url('image/background.jpg');
-            background-size:cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
+       .form-wrapper {
+           background-image: url('image/background.jpg');
+           background-size: cover;
+           background-position: center;
+           background-repeat: no-repeat;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           padding: 60px 0;
+           min-height: 90vh;
+       }
 
         form {
             width:400px;
@@ -50,10 +48,11 @@
         }
     </style>
 </head>
-<body>
+    <div class="form-wrapper">
     <form action="view" method="get">
         <label>Click to view database:</label>
         <input type="submit" value="View Data">
     </form>
-</body>
-</html>
+    </div>
+
+
